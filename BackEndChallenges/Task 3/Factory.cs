@@ -36,11 +36,11 @@
             _carService = carService;
         }
 
-        // RobotType is an enum and should
+        // RobotType is an enum
         public override Robot BuildRobot(RobotType robotType)
         {
             // Removing all the redundant if statements since they all do the same thing.
-            var parts = GetPartsFor(RobotType.RoboticDog);
+            var parts = GetPartsFor(robotType);
             if (parts == null)
                 return null;
             return _robotService.BuildRobotDog(parts);
@@ -51,7 +51,7 @@
         public override Car BuildCar(CarType carType)
         {
             // Removing all the redundant if statements since they all do the same thing.
-            var parts = GetPartsFor(CarType.Toyota);
+            var parts = GetPartsFor(carType);
             if (parts == null)
                 return null;
             return _carService.BuildCar(parts);
@@ -59,7 +59,7 @@
 
         // Local variables and parameter names should be Camel casing.
         // GetRobotPartsFor and GetCarPartsFor can be changed to GetpartsFor, since they both have Enum parameters and it's underlying code encapsulation _partService.GetParts(Enum enumType) is already an overloaded methodod. But simple clean code reads better and duplicate code is bad (classes with too much code). Hence I'm removing it.
-        // I commented out the below code, because it should be removed. This can now sit in it's base class.
+        // I commented out the below code, because it should be removed. This can now sit in the base class.
         /*public List<Parts> GetPartsFor(Enum type)
         {
             return _partsService.GetParts(type);
